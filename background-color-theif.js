@@ -84,10 +84,9 @@ var BackgroundColorTheif = function() {};
  * Use the median cut algorithm provided by quantize.js to cluster similar
  * colors and return the base color from the largest cluster.
  *
- * Quality is an optional argument. It needs to be an integer. 0 is the highest quality settings.
- * 10 is the default. There is a trade-off between quality and speed. The bigger the number, the
- * faster a color will be returned but the greater the likelihood that it will not be the visually
- * most dominant color.
+ * quality is an optional argument that must be an Integer of value 1 or greater, and defaults to 10. 
+ * The number determines how many pixels are skipped before the next one is sampled. 
+ * We rarely need to sample every single pixel in the image to get good results. The bigger the number, the faster a value will be returned.
  *
  * */
 BackgroundColorTheif.prototype.getBackGroundColor = function(sourceImage, quality) {
@@ -108,9 +107,9 @@ BackgroundColorTheif.prototype.getBackGroundColor = function(sourceImage, qualit
  *
  * BUGGY: Function does not always return the requested amount of colors. It can be +/- 2.
  *
- * quality is an optional argument. It needs to be an integer. 0 is the highest quality settings.
- * 10 is the default. There is a trade-off between quality and speed. The bigger the number, the
- * faster the palette generation but the greater the likelihood that colors will be missed.
+ * quality is an optional argument that must be an Integer of value 1 or greater, and defaults to 10. 
+ * The number determines how many pixels are skipped before the next one is sampled. 
+ * We rarely need to sample every single pixel in the image to get good results. The bigger the number, the faster a value will be returned.
  *
  *
  */
@@ -130,6 +129,9 @@ BackgroundColorTheif.prototype.getPalette = function(sourceImage, colorCount, qu
     var pixelCount;
     var widthLimit = Math.round(image.getWidth() * (0.1));
     var heightLimit = Math.round(image.getHeight() * (0.1));
+
+    console.log('image.getWidth' + image.getWidth());
+    console.log('widthLimit' + widthLimit);
 
     // Store the RGB values in an array format suitable for quantize function
     var pixelArray = [];
