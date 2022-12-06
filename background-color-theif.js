@@ -89,8 +89,8 @@ var BackgroundColorTheif = function() {};
  * We rarely need to sample every single pixel in the image to get good results. The bigger the number, the faster a value will be returned.
  *
  * */
-BackgroundColorTheif.prototype.getBackGroundColor = function(sourceImage, quality) {
-    var palette = this.getPalette(sourceImage, 5, quality);
+BackgroundColorTheif.prototype.getBackGroundColor = function(sourceImage, quality,colorCount) {
+    var palette = this.getPalette(sourceImage, colorCount, quality);
     var backGroundColor = palette[0];
     return backGroundColor;
 };
